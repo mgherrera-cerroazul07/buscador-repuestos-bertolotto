@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body { font-family: sans-serif; display: flex; justify-content: center; padding: 20px; }
+        .buscador { max-width: 500px; background: #f8f8f8; padding: 20px; border-radius: 8px; border: 1px solid #ddd; }
+        select, button { padding: 10px; margin: 5px; border-radius: 4px; border: 1px solid #ccc; }
+        button { background: #000; color: #fff; border: none; cursor: pointer; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="buscador">
+        <form id="vehicleSearchForm">
+            <select id="marca" required>
+                <option value="">Marca</option>
+                <option value="Fiat">Fiat</option>
+                <option value="Renault">Renault</option>
+            </select>
+            <select id="modelo" required>
+                <option value="">Modelo</option>
+                <option value="Cronos">Cronos</option>
+                <option value="Kangoo">Kangoo</option>
+            </select>
+            <button type="submit">BUSCAR</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('vehicleSearchForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const marca = document.getElementById('marca').value;
+            const modelo = document.getElementById('modelo').value;
+            const query = marca + ' ' + modelo;
+            // Redirige a la página principal de la tienda con el filtro
+            window.parent.location.href = 'https://bertolottocarcenter3.mitiendanube.com/search/?q=' + encodeURIComponent(query);
+        });
+    </script>
+</body>
+</html>
