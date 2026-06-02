@@ -3,38 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <style>
-        body { font-family: sans-serif; display: flex; justify-content: center; padding: 20px; }
-        .buscador { max-width: 500px; background: #f8f8f8; padding: 20px; border-radius: 8px; border: 1px solid #ddd; }
-        select, button { padding: 10px; margin: 5px; border-radius: 4px; border: 1px solid #ccc; }
-        button { background: #000; color: #fff; border: none; cursor: pointer; font-weight: bold; }
+        body { font-family: sans-serif; margin: 0; padding: 0; background: transparent; overflow: hidden; }
+        .container { display: flex; align-items: center; gap: 30px; max-width: 800px; }
+        .image-side { flex: 1; }
+        .image-side img { width: 100%; height: 500px; object-fit: cover; border-radius: 8px; }
+        .form-wrapper { width: 320px; padding: 20px; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; font-weight: bold; margin-bottom: 5px; font-size: 14px; color: #333; }
+        select { width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 4px; background: #f9f9f9; }
+        button { width: 100%; padding: 15px; background: #dcdcdc; border: none; font-weight: bold; cursor: pointer; text-transform: uppercase; color: #777; border-radius: 4px; }
+        button:hover { background: #cfcfcf; }
     </style>
 </head>
 <body>
-    <div class="buscador">
+
+<div class="container">
+    <div class="image-side">
+        <!-- Asegurate de que la URL de abajo sea la correcta de tu imagen -->
+        <img src="https://raw.githubusercontent.com/mgherrera-cerroazul07/buscador-repuestos-bertolotto/main/RENOV%C3%81%20TUS%20NEUM%C3%81TICOS%20(800%20x%20500%20px).jpg" alt="Buscador">
+    </div>
+    
+    <div class="form-wrapper">
         <form id="vehicleSearchForm">
-            <select id="marca" required>
-                <option value="">Marca</option>
-                <option value="Fiat">Fiat</option>
-                <option value="Renault">Renault</option>
-            </select>
-            <select id="modelo" required>
-                <option value="">Modelo</option>
-                <option value="Cronos">Cronos</option>
-                <option value="Kangoo">Kangoo</option>
-            </select>
+            <div class="form-group">
+                <label>Marca</label>
+                <select id="marca"><option value="">Seleccionar</option><option value="Fiat">Fiat</option></select>
+            </div>
+            <div class="form-group">
+                <label>Modelo</label>
+                <select id="modelo"><option value="">Seleccionar</option><option value="Cronos">Cronos</option></select>
+            </div>
+            <div class="form-group">
+                <label>Año</label>
+                <select id="anio"><option value="">Seleccionar</option><option value="2024">2024</option></select>
+            </div>
+            <div class="form-group">
+                <label>Versión</label>
+                <select id="version"><option value="">Seleccionar</option><option value="Base">Base</option></select>
+            </div>
             <button type="submit">BUSCAR</button>
         </form>
     </div>
+</div>
 
-    <script>
-        document.getElementById('vehicleSearchForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const marca = document.getElementById('marca').value;
-            const modelo = document.getElementById('modelo').value;
-            const query = marca + ' ' + modelo;
-            // Redirige a la página principal de la tienda con el filtro
-            window.parent.location.href = 'https://bertolottocarcenter3.mitiendanube.com/search/?q=' + encodeURIComponent(query);
-        });
-    </script>
+<script>
+    document.getElementById('vehicleSearchForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const m = document.getElementById('marca').value;
+        const mo = document.getElementById('modelo').value;
+        const a = document.getElementById('anio').value;
+        const v = document.getElementById('version').value;
+        
+        // Crea la cadena de búsqueda
+        const query = [m, mo, a, v].filter(Boolean).join(' ');
+        window.parent.location.href = 'https://bertolottocarcenter3.mitiendanube.com/search/?q=' + encodeURIComponent(query);
+    });
+</script>
+
 </body>
 </html>
