@@ -3,38 +3,79 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Buscador Bertolotto</title>
     <style>
-        body { font-family: sans-serif; margin: 0; padding: 20px; }
-        .buscador-wrapper {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            gap: 30px;
-            max-width: 1000px;
-            margin: auto;
-        }
-        .buscador-img { flex: 1; min-width: 300px; }
-        .buscador-img img { width: 100%; border-radius: 8px; }
-        .buscador-form { flex: 1; min-width: 300px; }
+        body { font-family: sans-serif; margin: 0; padding: 20px; background: transparent; overflow-x: hidden; }
         
-        /* Ajuste para móviles */
+        /* Contenedor principal con Flexbox */
+        .container { 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            gap: 30px; 
+            max-width: 800px; 
+            margin: 0 auto; 
+            flex-wrap: wrap; /* Permite que se apile en móvil */
+        }
+        
+        .image-side { flex: 1; min-width: 300px; }
+        .image-side img { width: 100%; height: auto; object-fit: contain; border-radius: 8px; }
+        
+        .form-wrapper { width: 100%; max-width: 320px; padding: 20px; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; font-weight: bold; margin-bottom: 5px; font-size: 14px; color: #333; }
+        select { width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 4px; background: #f9f9f9; }
+        button { width: 100%; padding: 15px; background: #8b0000; color: #fff; border: none; cursor: pointer; font-weight: bold; text-transform: uppercase; border-radius: 4px; }
+        button:hover { background: #600000; }
+
+        /* Ajuste para móviles: Imagen arriba, formulario abajo */
         @media (max-width: 768px) {
-            .buscador-wrapper { flex-direction: column; }
+            .container { flex-direction: column; gap: 10px; }
+            .form-wrapper { padding: 10px 0; }
         }
     </style>
 </head>
 <body>
 
-<div class="buscador-wrapper">
-    <div class="buscador-img">
-        <img src="neumaticosparagithub.jpg" alt="Buscá por vehículo">
+<div class="container">
+    <div class="image-side">
+        <!-- Nueva imagen actualizada -->
+        <img src="https://mgherrera-cerroazul07.github.io/buscador-repuestos-bertolotto/neumaticosparagithub.jpg" alt="Buscá por vehículo">
     </div>
     
-    <div class="buscador-form">
-        <!-- AQUÍ VA TU CÓDIGO ORIGINAL (Tus selectores de Marca, Modelo, etc.) -->
+    <div class="form-wrapper">
+        <form id="vehicleSearchForm">
+            <div class="form-group">
+                <label>Marca</label>
+                <select id="marca"><option value="">Seleccionar</option><option value="Fiat">Fiat</option></select>
+            </div>
+            <div class="form-group">
+                <label>Modelo</label>
+                <select id="modelo"><option value="">Seleccionar</option><option value="Cronos">Cronos</option></select>
+            </div>
+            <div class="form-group">
+                <label>Año</label>
+                <select id="anio"><option value="">Seleccionar</option><option value="2024">2024</option></select>
+            </div>
+            <div class="form-group">
+                <label>Versión</label>
+                <select id="version"><option value="">Seleccionar</option><option value="Base">Base</option></select>
+            </div>
+            <button type="submit">BUSCAR</button>
+        </form>
     </div>
 </div>
+
+<script>
+    document.getElementById('vehicleSearchForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const m = document.getElementById('marca').value;
+        const mo = document.getElementById('modelo').value;
+        const a = document.getElementById('anio').value;
+        const v = document.getElementById('version').value;
+        const query = [m, mo, a, v].filter(Boolean).join(' ');
+        window.parent.location.href = 'https://bertolottocarcenter3.mitiendanube.com/search/?q=' + encodeURIComponent(query);
+    });
+</script>
 
 </body>
 </html>
