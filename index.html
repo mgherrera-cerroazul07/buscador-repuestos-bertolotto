@@ -1,36 +1,24 @@
 <!DOCTYPE html>
-<html lang="es">
+<html>
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
-        body { font-family: sans-serif; margin: 0; padding: 20px; background: transparent; overflow-x: hidden; }
-        
-        /* Contenedor principal con Flexbox */
-        .container { 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            gap: 30px; 
-            max-width: 800px; 
-            margin: 0 auto; 
-            flex-wrap: wrap; /* Permite que se apile en móvil */
-        }
-        
-        .image-side { flex: 1; min-width: 300px; }
-        .image-side img { width: 100%; height: auto; object-fit: contain; border-radius: 8px; }
-        
-        .form-wrapper { width: 100%; max-width: 320px; padding: 20px; }
+        body { font-family: sans-serif; margin: 0; padding: 20px; background: transparent; }
+        .container { display: flex; align-items: center; justify-content: center; gap: 30px; max-width: 800px; margin: 0 auto; flex-wrap: wrap; }
+        .image-side { flex: 1; min-width: 280px; }
+        .image-side img { width: 100%; height: auto; max-height: 500px; object-fit: contain; border-radius: 8px; }
+        .form-wrapper { width: 320px; padding: 20px; box-sizing: border-box; }
         .form-group { margin-bottom: 15px; }
         label { display: block; font-weight: bold; margin-bottom: 5px; font-size: 14px; color: #333; }
-        select { width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 4px; background: #f9f9f9; }
-        button { width: 100%; padding: 15px; background: #8b0000; color: #fff; border: none; cursor: pointer; font-weight: bold; text-transform: uppercase; border-radius: 4px; }
+        select { width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 4px; background: #f9f9f9; box-sizing: border-box; }
+        button { width: 100%; padding: 15px; background: #8b0000; color: #fff; border: none; cursor: pointer; font-weight: bold; text-transform: uppercase; border-radius: 4px; box-sizing: border-box; }
         button:hover { background: #600000; }
 
-        /* Ajuste para móviles: Imagen arriba, formulario abajo */
+        /* BLINDAJE PARA MÓVIL: Forzamos orden vertical solo si la pantalla es chica */
         @media (max-width: 768px) {
-            .container { flex-direction: column; gap: 10px; }
-            .form-wrapper { padding: 10px 0; }
+            .container { flex-direction: column !important; gap: 15px !important; }
+            .form-wrapper { width: 100% !important; max-width: 320px !important; padding: 10px 0 !important; }
+            .image-side { width: 100% !important; }
         }
     </style>
 </head>
@@ -38,8 +26,7 @@
 
 <div class="container">
     <div class="image-side">
-        <!-- Nueva imagen actualizada -->
-        <img src="https://mgherrera-cerroazul07.github.io/buscador-repuestos-bertolotto/neumaticosparagithub.jpg" alt="Buscá por vehículo">
+        <img src="https://mgherrera-cerroazul07.github.io/buscador-repuestos-bertolotto/neumaticosparagithub.jpg" alt="Buscador">
     </div>
     
     <div class="form-wrapper">
